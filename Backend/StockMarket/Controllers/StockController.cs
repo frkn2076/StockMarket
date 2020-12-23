@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using StockMarket.ExternalAPIs;
+using StockMarket.Models;
 using StockMarket.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace StockMarket.Controllers {
     [ApiController]
@@ -14,23 +13,35 @@ namespace StockMarket.Controllers {
 
         private readonly ILogger<StockController> _logger;
         private readonly IExternalApiCaller _externalApiCaller;
+        private readonly IMapper _mapper;
 
-        public StockController(ILogger<StockController> logger, IExternalApiCaller externalApiCaller) {
+        public StockController(ILogger<StockController> logger, IExternalApiCaller externalApiCaller, IMapper mapper) {
             _logger = logger;
             _externalApiCaller = externalApiCaller;
+            _mapper = mapper;
         }
 
         [HttpGet("stocks")]
         public StockViewModel[] GetStocks() {
             var stocks = _externalApiCaller.GetStocks();
-            var response = stocks?.data?.Select(stockDetail => new StockViewModel(stockDetail.kod, stockDetail.ad)).ToArray();
+            var response = stocks?.data?.Select(stockDetail => new StockViewModel{
+                code = stockDetail.kod,
+                name = stockDetail.ad 
+            }).ToArray();
             return response;
         }
 
-        [HttpPost("stockDetail")]
-        public decimal GetStockDetailByCode(string code) {
-            var stockDetail = _externalApiCaller.GetStockDetail(code);
-            var response = stockDetail?.data?.hisseYuzeysel?.alis ?? 0;
+        [HttpPost("stockDetails")]
+        public StockDetailViewModel[] GetStockDetails(string timePeriod) {
+            var stockDetails = _externalApiCaller.GetStockDetails(timePeriod);
+            var response = _mapper.Map<StockDetailModel[], StockDetailViewModel[]>(stockDetails);
+            return response;
+        }
+        
+        [HttpPost("stockDetailByCode")]
+        public StockDetailViewModel GetStockDetailByCode(string stockCode, string timePeriod) {
+            var stockDetail = _externalApiCaller.GetStockDetailByCode(stockCode, timePeriod);
+            var response = _mapper.Map<StockDetailViewModel>(stockDetail);
             return response;
         }
     }

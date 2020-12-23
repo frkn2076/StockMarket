@@ -3,5 +3,4 @@
         public string code { get; set; }
         public StockModel[] data { get; set; }
     }
-
 }

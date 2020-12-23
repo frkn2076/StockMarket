@@ -36,3 +36,5 @@ C:\.NETProjects\StockMarket\Backend\StockMarket\obj\Debug\net5.0\ref\StockMarket
 C:\.NETProjects\StockMarket\Backend\StockMarket\obj\Debug\net5.0\StockMarket.pdb
 C:\.NETProjects\StockMarket\Backend\StockMarket\obj\Debug\net5.0\StockMarket.genruntimeconfig.cache
 C:\.NETProjects\StockMarket\Backend\StockMarket\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\.NETProjects\StockMarket\Backend\StockMarket\bin\Debug\net5.0\HtmlAgilityPack.dll
+C:\.NETProjects\StockMarket\Backend\StockMarket\bin\Debug\net5.0\AutoMapper.dll

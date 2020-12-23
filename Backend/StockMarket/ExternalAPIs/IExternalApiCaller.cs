@@ -3,6 +3,7 @@
 namespace StockMarket.ExternalAPIs {
     public interface IExternalApiCaller {
         StockTypeModel GetStocks();
-        StockDetailModel GetStockDetail(string code);
+        StockDetailModel[] GetStockDetails(string timePeriod);
+        StockDetailModel GetStockDetailByCode(string stockCode, string timePeriod);
     }
 }
