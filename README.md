@@ -1,5 +1,7 @@
 # StockMarket
 
-A project which gives information about stocks. 
+A project which gives information about stocks. (.Net 5.0)
 
-## (Angular & .Net 5.0)
+* Swagger
+* AutoMapper
+
