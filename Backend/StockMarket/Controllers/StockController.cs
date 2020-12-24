@@ -24,10 +24,7 @@ namespace StockMarket.Controllers {
         [HttpGet("stocks")]
         public StockViewModel[] GetStocks() {
             var stocks = _externalApiCaller.GetStocks();
-            var response = stocks?.data?.Select(stockDetail => new StockViewModel{
-                code = stockDetail.kod,
-                name = stockDetail.ad 
-            }).ToArray();
+            var response = stocks?.data?.Select(stockDetail => new StockViewModel(stockDetail.kod, stockDetail.ad)).ToArray();
             return response;
         }
 

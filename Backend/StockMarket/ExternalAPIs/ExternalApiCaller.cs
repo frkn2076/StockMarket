@@ -108,18 +108,7 @@ namespace StockMarket.ExternalAPIs {
                     details = new List<string>();
                 }
             }
-            stockDetails = stocks.Select(x => new StockDetailModel
-            {
-                stockCode = x.Item1,
-                distanceToBotttom = x.Item2[0],
-                lastValue = x.Item2[1],
-                distanceToBottomPercentage = x.Item2[2],
-                valueOfYesterday = x.Item2[3],
-                highestForGivenTimePeriod = x.Item2[4],
-                lowestForGivenTimePeriod = x.Item2[5],
-                volumeOfLot = x.Item2[6],
-                volumeOfCurrency = x.Item2[7] 
-            }).ToArray();
+            stockDetails = stocks.Select(x => new StockDetailModel(x.Item1, x.Item2[0], x.Item2[1], x.Item2[2], x.Item2[3], x.Item2[4], x.Item2[5], x.Item2[6], x.Item2[7])).ToArray();
         }
 
         #endregion

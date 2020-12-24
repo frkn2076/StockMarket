@@ -1,5 +1,5 @@
 ﻿namespace StockMarket.ViewModels {
-    public class StockDetailViewModel {
+    public record StockDetailViewModel {
         public string stockCode { get; set; }
         public string distanceToBotttom { get; set; }
         public string lastValue { get; set; }
